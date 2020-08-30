@@ -26,6 +26,7 @@ External applications implementing local services must register the services
 using GattManager1 registration method and must implement the methods and
 properties defined in GattService1 interface.
 
+```
 Service		org.bluez
 Interface	org.bluez.GattService1
 Object path	[variable prefix]/{hci0,hci1,...}/dev_XX_XX_XX_XX_XX_XX/serviceXX
@@ -57,7 +58,7 @@ Properties	string UUID [read-only]
 			which may fail, to auto allocate the value 0x0000
 			shall be used which will cause the allocated handle to
 			be set once registered.
-
+```
 
 Characteristic hierarchy
 ========================
@@ -65,6 +66,7 @@ Characteristic hierarchy
 For local GATT defined services, the object paths need to follow the service
 path hierarchy and are freely definable.
 
+```
 Service		org.bluez
 Interface	org.bluez.GattCharacteristic1
 Object path	[variable prefix]/{hci0,hci1,...}/dev_XX_XX_XX_XX_XX_XX/serviceXX/charYYYY
@@ -279,12 +281,14 @@ Properties	string UUID [read-only]
 			which may fail, to auto allocate the value 0x0000
 			shall be used which will cause the allocated handle to
 			be set once registered.
+```
 
 Characteristic Descriptors hierarchy
 ====================================
 
 Local or remote GATT characteristic descriptors hierarchy.
 
+```
 Service		org.bluez
 Interface	org.bluez.GattDescriptor1
 Object path	[variable prefix]/{hci0,hci1,...}/dev_XX_XX_XX_XX_XX_XX/serviceXX/charYYYY/descriptorZZZ
@@ -362,6 +366,7 @@ Properties	string UUID [read-only]
 			which may fail, to auto allocate the value 0x0000
 			shall be used which will cause the allocated handle to
 			be set once registered.
+```
 
 GATT Profile hierarchy
 =====================
@@ -371,6 +376,7 @@ an application effectively indicates support for a specific GATT profile
 and requests automatic connections to be established to devices
 supporting it.
 
+```
 Service		<application dependent>
 Interface	org.bluez.GattProfile1
 Object path	<application dependent>
@@ -386,7 +392,7 @@ Methods		void Release()
 Properties	array{string} UUIDs [read-only]
 
 			128-bit GATT service UUIDs to auto connect.
-
+```
 
 GATT Manager hierarchy
 ======================
@@ -413,6 +419,7 @@ the objects of that service. Hence, the standard DBus.ObjectManager interface
 must be available on the root service path. An example application hierarchy
 containing two separate GATT services may look like this:
 
+```
 -> /com/example
   |   - org.freedesktop.DBus.ObjectManager
   |
@@ -439,6 +446,7 @@ containing two separate GATT services may look like this:
     -> /com/example/service1/char0
         - org.freedesktop.DBus.Properties
         - org.bluez.GattCharacteristic1
+```
 
 When a service is registered, BlueZ will automatically obtain information about
 all objects using the service's Object Manager. Once a service has been
@@ -456,7 +464,7 @@ Examples:
 		test/example-gatt-server
 		tools/gatt-service
 
-
+```
 Service		org.bluez
 Interface	org.bluez.GattManager1
 Object path	[variable prefix]/{hci0,hci1,...}
@@ -483,3 +491,4 @@ Methods		void RegisterApplication(object application, dict options)
 
 			Possible errors: org.bluez.Error.InvalidArguments
 					 org.bluez.Error.DoesNotExist
+```
